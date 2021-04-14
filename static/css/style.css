@@ -1,0 +1,44 @@
+@font-face {
+    font-family: rixgoeb;
+    src: url('../font/RIXGOEB.woff')
+}
+@font-face {
+    font-family: rixgol;
+    src: url('../font/RIXGOL.woff');
+}
+
+html {
+    text-align: center;
+    font-family: rixgol;
+}
+
+.customMode, .testMode {
+    display: none;
+}
+
+#title {
+    font-family: rixgoeb;
+    font-size: 30;
+}
+
+#introduce {
+    font-size: 25;
+}
+
+img, input, progress {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#healthBar {
+    width: 360;
+    height: 42;
+}
+#healthBar:after {
+    content: attr(value);
+}
+
+#ultimateLevel {
+    width: 177;
+}
