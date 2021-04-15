@@ -106,7 +106,7 @@ function isKillgak(bool)
 // 오차 범위 설정 함수
 function setErrorRange()
 {
-    if (currentKill < 70)
+    if (currentKill < 40)
         errorRange = Math.pow(10, 3 - parseInt(currentKill / 10));
     else // (40 <= currentKill)
         errorRange = 1;
