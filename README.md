@@ -2,7 +2,7 @@
 ## Play
 [시뮬레이터 플레이](https://c2lv.github.io/Demacian-Justice-Simulator/)
 ## Introduce
-MOBA(Multiplayer Online Battle Arena) 장르 게임 '리그 오브 레전드'의 챔피언 가렌 궁극기 대미지 시뮬레이터입니다.  
+MOBA(Multiplayer Online Battle Arena) 장르 게임 '리그 오브 레전드(League Of Legend)'의 챔피언 가렌 궁극기 대미지 시뮬레이터입니다.  
 가렌의 궁극기 명칭은 데마시아의 정의(Demacian Justice)이고 고정 피해이며 궁극기의 레벨별 대미지 계산 공식은 다음과 같습니다.  
 
 > 150 / 300 / 450 (+ 대상이 잃은 체력의 20% / 25% / 30%), 소수점 셋째 자리에서 반올림  
