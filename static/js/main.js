@@ -1,4 +1,5 @@
 var currentHealth, maximumHealth, ultimateLevel, missingHealth, trueDamage;
+var errorRange, currentKill = 0, maximumKill = 0;
 
 // min 이상 max 이하인 정수 난수 생성 함수
 function getRandomInt(min, max)
@@ -67,20 +68,78 @@ function healthBar()
 {
     document.getElementById('healthBar').value = document.getElementById('currentHealth').value;
     document.getElementById('healthBar').max = document.getElementById('maximumHealth').value;
+    document.querySelector('.HP').innerHTML = document.getElementById('healthBar').value + '/' + document.getElementById('healthBar').max;
 }
 
 // 사용자 설정 모드
 function customMode()
 {
+    // 설정 초기화
+    document.querySelector('#currentHealth').value = 1;
+    document.querySelector('#maximumHealth').value = 1;
+    document.querySelector('#ultimateLevel').value = 1;
+    healthBar();
+    
     document.getElementById('introduce').innerHTML = "티모의 현재 체력과 최대 체력을 입력하고 궁극기 아이콘을 클릭해보세요!";
     document.querySelector('.testMode').style.display = 'none';
     document.querySelector('.customMode').style.display = 'block';
 }
 
+// 킬각 확인
+function isKillgak(bool)
+{
+    if (trueDamage < parseFloat(currentHealth) && bool == 0 || trueDamage >= parseFloat(currentHealth) && bool == 1)
+    {
+        alert('정답입니다!');
+        currentKill++;
+        if (maximumKill < currentKill)
+            maximumKill = currentKill;
+    }
+    else
+    {
+        alert('틀렸습니다.')
+        currentKill = 0;
+    }
+    test();
+}
+
+// 오차 범위 설정 함수
+function setErrorRange()
+{
+    if (currentKill < 70)
+        errorRange = Math.pow(10, 3 - parseInt(currentKill / 10));
+    else // (40 <= currentKill)
+        errorRange = 1;
+}
+
+// 시험
+function test()
+{
+    setErrorRange();
+
+    ultimateLevel = getRandomInt(1, 3);
+    // 오차 범위 이내의 값이 설정될 때까지 반복
+    do {
+        maximumHealth = getRandomInt(475, 10000) // 2021/4/15 기준 1레벨 챔피언 최저 체력(나미, 475) 이상 10000 이하로 설정.
+        currentHealth = getRandomInt(1, maximumHealth);
+        missingHealth = maximumHealth - currentHealth;
+        trueDamage = (ultimateLevel * 150 + missingHealth * (0.15 + 0.05 * ultimateLevel)).toFixed(2);
+    } while (!(parseFloat(-1 * errorRange) <= trueDamage - parseFloat(currentHealth) && trueDamage - parseFloat(currentHealth) <= parseFloat(errorRange)));
+
+    document.getElementById('healthBar').value = currentHealth;
+    document.getElementById('healthBar').max = maximumHealth;
+    document.querySelector('.HP').innerHTML = currentHealth + '/' + maximumHealth;
+
+    document.querySelector('.currentKill').innerHTML = "현재 연속 킬 수: " + currentKill;
+    document.querySelector('.maximumKill').innerHTML = "최대 연속 킬 수: " + maximumKill;
+    document.querySelector('.testRlevel').innerHTML = "궁극기 레벨: " + ultimateLevel;
+}
+
 // 시험 모드
 function testMode()
 {
-    document.getElementById('introduce').innerHTML = "티모의 체력바를 보고 킬각인지 아닌지 맞혀보세요!";
+    document.getElementById('introduce').innerHTML = "궁극기 레벨과 티모의 체력바를 보고 킬각인지 아닌지 맞혀보세요!";
     document.querySelector('.testMode').style.display = 'block';
     document.querySelector('.customMode').style.display = 'none';
+    test();
 }

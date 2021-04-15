@@ -10,28 +10,22 @@
         <div class="simulator">
             <p id="introduce"></p>
             <progress id="healthBar" value="1" max="1"></progress>
+            <p class="HP">1/1</p>
             <img id="Teemo" src="static/img/Teemo_Render.png">
             <div class="customMode">
-                <input id="currentHealth" type="number" value="1" min="0" placeholder="현재 체력" onchange="healthBar()">
-                <input id="maximumHealth" type="number" value="1" min="0" placeholder="최대 체력" onchange="healthBar()">
+                <input id="currentHealth" type="number" value="1" min="1" placeholder="현재 체력" onchange="healthBar()">
+                <input id="maximumHealth" type="number" value="1" min="1" placeholder="최대 체력" onchange="healthBar()">
                 <input id="ultimateLevel" type="number" value="1" min="1" max="3" placeholder="궁극기 레벨">
                 <img src="static/img/GarenR.png" onclick="demacianJustice()">
             </div>
             <div class="testMode">
-                <p class="currentKill">현재 연속 킬 수: 0</p>
-                <p class="maximumKill">최대 연속 킬 수: 0</p>
-                <button onclick="">
+                <p class="currentKill"></p>
+                <p class="maximumKill"></p>
+                <p class="testRlevel"></p>
+                <button onclick="isKillgak(1)">킬각</button>
+                <button onclick="isKillgak(0)">킬각 아님</button>
             </div>
         </div>
         <script src="static/js/main.js"></script>
     </body>
 </html>
-
-<!--
-상하 가운데 정렬
-
-progress 체력바 롤이랑 똑같은 모양으로 구현
-(바코드 모양, 100자리는 실선, 1000자리는 굵은 선)
-
-가렌 궁 모의고사
--->

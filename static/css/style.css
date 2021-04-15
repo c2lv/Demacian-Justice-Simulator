@@ -35,9 +35,6 @@ img, input, progress {
     width: 360;
     height: 42;
 }
-#healthBar:after {
-    content: attr(value);
-}
 
 #ultimateLevel {
     width: 177;
